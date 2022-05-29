@@ -9,6 +9,7 @@ interface CatItemButtonProps {
 }
 
 const CatItemBox = styled.div`
+  cursor: pointer;
   transition: all 0.3s;
   position: relative;
   &:hover {
@@ -42,8 +43,8 @@ const CatItemButton = styled.button<CatItemButtonProps>`
   position: absolute;
   right: 10px;
   bottom: 10px;
-  opacity: 0;
   cursor: pointer;
+  opacity: ${props => props.favorite ? 1 : 0};
   width: 40px;
   height: 40px;
   background-image: url("${props => props.favorite ? filledHeart : outlinedHeart}");
@@ -69,9 +70,9 @@ const CatItem: FC<CatItemProps> = ({image, id, name,favorite, onFavoriteHandler}
     }
 
     return (
-        <CatItemBox>
+        <CatItemBox onClick={addToFavoritesHandler}>
             <CatItemImg src={image?.url} alt=""/>
-            <CatItemButton favorite={favorite} onClick={addToFavoritesHandler}/>
+            <CatItemButton favorite={favorite} />
         </CatItemBox>
     );
 };
