@@ -23,7 +23,7 @@ const root = ReactDOM.createRoot(
 
 // HashRouter for gitHub pages
 root.render(
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter >
         <Provider store={store}>
             <>
                 <Global/>
