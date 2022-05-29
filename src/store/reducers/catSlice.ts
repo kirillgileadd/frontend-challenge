@@ -43,11 +43,16 @@ export const catSlice = createSlice({
     reducers: {
         addToFavorite: (state, action: PayloadAction<ICat>) => {
             state.favorites.push(action.payload)
+            localStorage.setItem('cats', JSON.stringify(state.favorites))
             state.cats = changeFavourValue(state.cats, action.payload)
         },
         deleteFromFavorite: (state, action: PayloadAction<ICat>) => {
             state.favorites = state.favorites.filter((cat) => cat.id !== action.payload.id)
+            localStorage.setItem('cats', JSON.stringify(state.favorites))
             state.cats = changeFavourValue(state.cats, action.payload)
+        },
+        setFavorites: (state, action: PayloadAction<ICat[]>) => {
+            state.favorites = action.payload
         },
         setPage: (state) => {
             state.page += 1
@@ -86,6 +91,6 @@ export const catSlice = createSlice({
     }
 })
 
-export const { addToFavorite, deleteFromFavorite, setPage, setTotalPages } = catSlice.actions
+export const { addToFavorite, deleteFromFavorite, setPage, setTotalPages, setFavorites } = catSlice.actions
 
 export default catSlice.reducer

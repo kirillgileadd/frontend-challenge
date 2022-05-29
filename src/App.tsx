@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AppRouter from "./components/AppRouter";
 import Header from "./components/Header";
 import styled from "styled-components";
+import {setFavorites} from "./store/reducers/catSlice";
+import {useAppDispatch} from "./hooks/redux";
 
 export const Container = styled.div`
   height: 100%;
@@ -14,7 +16,18 @@ const AppWrapper = styled.div`
   padding-bottom: 38px;
 `
 
+
+
 function App() {
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        const cats = localStorage.getItem('cats')
+        if(cats) {
+            dispatch(setFavorites(JSON.parse(cats)))
+        }
+    }, [])
+
     return (
         <Container>
             <Header/>

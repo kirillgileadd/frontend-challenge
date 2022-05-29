@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchCats} from "../store/action-creators/cat";
 import CatList from "../components/CatList";
 import {ICat} from "../models/ICat";
-import {addToFavorite, deleteFromFavorite, setPage} from "../store/reducers/catSlice";
+import {addToFavorite, deleteFromFavorite, setFavorites, setPage} from "../store/reducers/catSlice";
 import {useObserver} from "../hooks/useObserver";
 
 const AllCats: FC = () => {
