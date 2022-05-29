@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {ICat} from "../models/ICat";
 import outlinedHeart from '../assets/heart.svg'
 import filledHeart from '../assets/heartFilled.svg'
+import mockCatPhoto from '../assets/cat.jpg'
 
 interface CatItemButtonProps {
     favorite?: boolean
@@ -20,7 +21,7 @@ const CatItemBox = styled.div`
     }
   }
 
-  @media(max-width: 650px) {
+  @media(max-width: 1050px) {
     &:hover {
       transform: none;
       box-shadow: none;
@@ -71,7 +72,7 @@ const CatItem: FC<CatItemProps> = ({image, id, name,favorite, onFavoriteHandler}
 
     return (
         <CatItemBox onClick={addToFavoritesHandler}>
-            <CatItemImg src={image?.url} alt=""/>
+            <CatItemImg src={image?.url ?? mockCatPhoto} alt=""/>
             <CatItemButton favorite={favorite} />
         </CatItemBox>
     );

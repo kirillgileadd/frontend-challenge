@@ -19,7 +19,7 @@ const FavoritesCats: FC = () => {
                     cats={favorites}
                     onDelFromFavorites={onDelFromFavorites}
                 />
-                : <p>Добавьте котиков в избранное</p>}
+                : <p>Выберите любимых котиков</p>}
         </>
     );
 };
