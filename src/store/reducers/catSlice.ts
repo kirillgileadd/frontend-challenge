@@ -20,6 +20,11 @@ const initialState: CatSate = {
     totalPages: null
 }
 
+interface FetchCatsFulfilledAction {
+    data: ICat[];
+    totalCount: string
+}
+
 const changeFavourValue = (cats: ICat[], cat: ICat) => {
     return cats.map(item => {
         if (item.id === cat.id) {
@@ -55,10 +60,10 @@ export const catSlice = createSlice({
         [fetchCats.pending.type]: (state) => {
             state.loading = true
         },
-        [fetchCats.fulfilled.type]: (state, action: PayloadAction<any>) => {
+        [fetchCats.fulfilled.type]: (state, action: PayloadAction<FetchCatsFulfilledAction>) => {
             const {data, totalCount} = action.payload
             state.loading = false
-            state.cats = [...state.cats, ...data.map((cat: ICat) => {
+            state.cats = [...state.cats, ...data.map((cat) => {
                 const favoritesCat = state.favorites.find(favoritesCat => cat.id ===  favoritesCat.id)
                 if (favoritesCat?.id === cat.id) {
                     return {
@@ -73,7 +78,7 @@ export const catSlice = createSlice({
                 }
             })]
             state.error = ''
-            state.totalPages = String(Math.ceil(totalCount / 10))
+            state.totalPages = String(Math.ceil(Number(totalCount) / 10))
         },
         [fetchCats.rejected.type]: (state, action: PayloadAction<string>) => {
             state.error = action.payload
