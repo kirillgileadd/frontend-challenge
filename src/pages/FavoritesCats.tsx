@@ -2,14 +2,14 @@ import React, {FC} from 'react';
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import CatList from "../components/CatList";
 import {ICat} from "../models/ICat";
-import {deleteFromFavorite} from "../store/reducers/catSlice";
+import {toggleToFavorites} from "../store/reducers/catSlice";
 
 const FavoritesCats: FC = () => {
     const dispatch = useAppDispatch()
     const {favorites} = useAppSelector(state => state.cats)
 
-    const onDelFromFavorites = (cat: ICat) => {
-        dispatch(deleteFromFavorite(cat))
+    const favoritesCatsHandler = (cat: ICat) => {
+        dispatch(toggleToFavorites(cat))
     }
 
     return (
@@ -17,7 +17,7 @@ const FavoritesCats: FC = () => {
             {favorites.length ?
                 <CatList
                     cats={favorites}
-                    onDelFromFavorites={onDelFromFavorites}
+                    onFavorite={favoritesCatsHandler}
                 />
                 : <p>Выберите любимых котиков</p>}
         </>

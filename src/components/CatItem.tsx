@@ -55,10 +55,10 @@ const CatItemButton = styled.button<CatItemButtonProps>`
   }
 `
 interface CatItemProps  extends ICat{
-    onFavoriteHandler: (cat: ICat) => void
+    onFavorite: (cat: ICat) => void
 }
 
-const CatItem: FC<CatItemProps> = ({image, id, name,favorite, onFavoriteHandler}) => {
+const CatItem: FC<CatItemProps> = ({image, id, name,favorite, onFavorite}) => {
 
     const addToFavoritesHandler = () => {
         let cat: ICat = {
@@ -67,7 +67,7 @@ const CatItem: FC<CatItemProps> = ({image, id, name,favorite, onFavoriteHandler}
             image,
             favorite: !favorite
         }
-        onFavoriteHandler(cat)
+        onFavorite(cat)
     }
 
     return (

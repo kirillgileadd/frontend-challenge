@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchCats} from "../store/action-creators/cat";
 import CatList from "../components/CatList";
 import {ICat} from "../models/ICat";
-import {addToFavorite, deleteFromFavorite, setFavorites, setPage} from "../store/reducers/catSlice";
+import {setPage, toggleToFavorites} from "../store/reducers/catSlice";
 import {useObserver} from "../hooks/useObserver";
 
 const AllCats: FC = () => {
@@ -30,12 +30,8 @@ const AllCats: FC = () => {
        dispatch(setPage())
     })
 
-    const addCatToFavorites = (cat: ICat) => {
-        dispatch(addToFavorite(cat))
-    }
-
-    const onDelFromFavorites = (cat: ICat) => {
-        dispatch(deleteFromFavorite(cat))
+    const favoritesCatsHandler = (cat: ICat) => {
+        dispatch(toggleToFavorites(cat))
     }
 
     if (error) {
@@ -46,8 +42,7 @@ const AllCats: FC = () => {
         <>
             <CatList
                 cats={cats}
-                addCatToFavorites={addCatToFavorites}
-                onDelFromFavorites={onDelFromFavorites}
+                onFavorite={favoritesCatsHandler}
             />
             <div ref={lastElement} style={{height: 20}}/>
         </>

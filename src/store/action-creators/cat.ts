@@ -1,11 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import {ICat} from "../../models/ICat";
 
 export const fetchCats = createAsyncThunk(
     'cat/fetchAll',
     async (page: number, thunkAPI) => {
         try {
-            const response = await axios.get('https://api.thecatapi.com/v1/breeds', {
+            const response = await axios.get<ICat[]>('https://api.thecatapi.com/v1/breeds', {
                 headers: {
                     "x-api-key": "421af83c-9bed-4fd6-bf0c-3bcb256a9546"
                 }, params: {

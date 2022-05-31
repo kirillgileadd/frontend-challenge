@@ -25,15 +25,14 @@ export const CatListStyle = styled.ul`
 
 interface CatListProps {
     cats: ICat[]
-    addCatToFavorites?: (cat: ICat) => void
-    onDelFromFavorites: (cat: ICat) => void
+    onFavorite: (cat: ICat) => void
 }
 
-const CatList: FC<CatListProps> = ({cats, addCatToFavorites, onDelFromFavorites}) => {
+const CatList: FC<CatListProps> = ({cats, onFavorite}) => {
     return (
         <CatListStyle>
             {cats.map(cat => <CatItem
-                onFavoriteHandler={cat.favorite ? onDelFromFavorites : addCatToFavorites || onDelFromFavorites}
+                onFavorite={onFavorite}
                 key={cat.id}
                 id={cat.id}
                 image={cat.image}

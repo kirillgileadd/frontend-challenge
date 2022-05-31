@@ -16,8 +16,6 @@ const AppWrapper = styled.div`
   padding-bottom: 38px;
 `
 
-
-
 function App() {
     const dispatch = useAppDispatch()
 
